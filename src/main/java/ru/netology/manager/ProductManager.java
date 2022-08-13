@@ -31,34 +31,10 @@ public class ProductManager {
         repo.removeById(id);
     }
 
-    public boolean matches(Product product, String search) {
-        if (product instanceof Book) {
-            Book book = (Book) product;
-            if (book.getName().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-            if (book.getAuthor().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-        }
-        if (product instanceof Smartphone) {
-            Smartphone smartphone = (Smartphone) product;
-            if (smartphone.getName().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-            if (smartphone.getProducer().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-
     public Product[] searchBy(String text) {
         Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
         for (Product product : repo.findAll()) {
-            if (matches(product, text)) {
+            if (product.matches(text)) {
                 Product[] tmp = new Product[result.length + 1];
                 System.arraycopy(result, 0, tmp, 0, result.length);
                 tmp[tmp.length - 1] = product;

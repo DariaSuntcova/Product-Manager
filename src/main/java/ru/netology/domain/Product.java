@@ -1,5 +1,7 @@
 package ru.netology.domain;
 
+import java.util.Locale;
+
 public class Product {
     protected int id;
     protected String name;
@@ -17,6 +19,11 @@ public class Product {
 
     public String getName() {
         return name;
+    }
+
+    public boolean matches(String search) {
+        return name.toLowerCase(Locale.ROOT).contains(search.toLowerCase());
+
     }
 
 
