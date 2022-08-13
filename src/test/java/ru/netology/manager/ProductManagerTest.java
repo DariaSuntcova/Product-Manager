@@ -54,13 +54,11 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void shouldSearchBySmartphoneProducer(){
+    public void shouldSearchBySmartphoneProducer() {
         Product[] expected = {product4, product6};
 
         Assertions.assertArrayEquals(expected, manager.searchBy("Huawei"));
     }
-
-
 
 
 }

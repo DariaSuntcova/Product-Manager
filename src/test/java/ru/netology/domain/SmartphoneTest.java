@@ -2,26 +2,20 @@ package ru.netology.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class SmartphoneTest {
     Product product = new Smartphone(4, "P50 Pocket White", 89_999, "HUAWEI");
 
-    @Test
-    public void matchesTrueName() {
-        Assertions.assertEquals(true, product.matches("P50"));
-    }
-    @Test
-    public void matchesTrueProducer() {
-        Assertions.assertEquals(true, product.matches("HUAWEI"));
-    }
-
-    @Test
-    public void matchesFalseName() {
-        Assertions.assertEquals(false, product.matches("iPhone 13"));
-    }
-
-    @Test
-    public void matchesFalseProducer() {
-        Assertions.assertEquals(false, product.matches("Apple"));
+    @ParameterizedTest
+    @CsvSource({
+            "true, P50",
+            "true, HUAWEI",
+            "false, iPhone 13",
+            "false, Apple"
+    })
+    public void matches(boolean expected, String search) {
+        Assertions.assertEquals(expected, product.matches(search));
     }
 }
