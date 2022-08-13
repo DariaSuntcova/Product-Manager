@@ -1,5 +1,7 @@
 package ru.netology.domain;
 
+import java.util.Locale;
+
 public class Smartphone extends Product {
     private String producer;
 
@@ -12,4 +14,8 @@ public class Smartphone extends Product {
         return producer;
     }
 
+    @Override
+    public boolean matches(String search) {
+        return super.matches(search) || producer.toLowerCase(Locale.ROOT).contains(search.toLowerCase());
+    }
 }
