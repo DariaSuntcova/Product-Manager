@@ -11,15 +11,15 @@ import ru.netology.repository.ProductRepository;
 
 
 public class ProductManagerTest {
-    ProductRepository repo = new ProductRepository();
-    ProductManager manager = new ProductManager(repo);
+    ProductRepository repository = new ProductRepository();
+    ProductManager manager = new ProductManager(repository);
 
     Product product1 = new Book(1, "Изучаем Java", 1_624, "Бэйтс Берт, Сьерра Кэти");
     Product product2 = new Book(2, "Денискины рассказы", 691, "Виктор Драгунский");
     Product product3 = new Smartphone(3, "iPhone 13", 82_999, "Apple");
     Product product4 = new Smartphone(4, "P50 Pocket White", 89_999, "HUAWEI");
     Product product5 = new Book(5, "Волшебная сила искусства", 781, "Виктор Драгунский");
-    Product product6 = new Smartphone(4, "P40", 32_999, "HUAWEI");
+    Product product6 = new Smartphone(6, "P40", 32_999, "HUAWEI");
 
     @BeforeEach
     public void setup() {
