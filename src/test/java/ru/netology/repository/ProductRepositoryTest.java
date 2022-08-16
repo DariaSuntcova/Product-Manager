@@ -27,6 +27,7 @@ public class ProductRepositoryTest {
         manager.add(product3);
         manager.add(product4);
     }
+
     @Test
     public void shouldAdd() {
         Product product5 = new Product(5, "Молоко", 56);
@@ -38,7 +39,7 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    public void shouldAddAlreadyId(){
+    public void shouldAddAlreadyId() {
         Assertions.assertThrows(AlreadyExistsException.class, () -> {
             manager.add(product4);
         });
