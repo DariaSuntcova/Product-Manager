@@ -1,17 +1,23 @@
 package ru.netology.repository;
 
 import ru.netology.domain.Product;
+import ru.netology.exception.AlreadyExistsException;
+import ru.netology.exception.NotFoundException;
 
 public class ProductRepository {
     private Product[] repo = new Product[0];
 
     public void add(Product product) {
-        Product[] tmp = new Product[repo.length + 1];
-        for (int i = 0; i < repo.length; i++) {
-            tmp[i] = repo[i];
+        if (findById(product.getId()) == null) {
+            Product[] tmp = new Product[repo.length + 1];
+            for (int i = 0; i < repo.length; i++) {
+                tmp[i] = repo[i];
+            }
+            tmp[tmp.length - 1] = product;
+            repo = tmp;
+        } else {
+            throw new AlreadyExistsException("Element with id: " + product.getId() + " already in the repository");
         }
-        tmp[tmp.length - 1] = product;
-        repo = tmp;
     }
 
     public Product[] findAll() {
@@ -40,7 +46,7 @@ public class ProductRepository {
             repo = tmp;
 
         } else {
-            System.out.println("Такого продукта в репозитории нет");
+            throw new NotFoundException("Element with id: " + id + " not found");
         }
     }
 }
