@@ -32,28 +32,8 @@ public class ProductManager {
     }
 
     public boolean matches(Product product, String search) {
-        if (product instanceof Book) {
-            Book book = (Book) product;
-            if (book.getName().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-            if (book.getAuthor().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-        }
-        if (product instanceof Smartphone) {
-            Smartphone smartphone = (Smartphone) product;
-            if (smartphone.getName().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-            if (smartphone.getProducer().toLowerCase(Locale.ROOT).contains(search.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
+        return product.getName().contains(search);
     }
-
-
 
     public Product[] searchBy(String text) {
         Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
