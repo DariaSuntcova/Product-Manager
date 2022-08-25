@@ -19,7 +19,7 @@ public class ProductManagerTest {
     Product product3 = new Smartphone(3, "iPhone 13", 82_999, "Apple");
     Product product4 = new Smartphone(4, "P50 Pocket White", 89_999, "HUAWEI");
     Product product5 = new Book(5, "Волшебная сила искусства", 781, "Виктор Драгунский");
-    Product product6 = new Smartphone(4, "P40", 32_999, "HUAWEI");
+    Product product6 = new Smartphone(4, "iPhone 10Plus", 32_999, "Apple");
 
     @BeforeEach
     public void setup() {
@@ -32,17 +32,24 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void shouldSearchByBookName() {
+    public void shouldSearchByOneProduct() {
         Product[] expected = {product1};
 
         Assertions.assertArrayEquals(expected, manager.searchBy("Java"));
     }
 
     @Test
-    public void shouldSearchBySmartphoneName() {
-        Product[] expected = {product3};
+    public void shouldSearchTwoProducts() {
+        Product[] expected = {product3, product6};
 
         Assertions.assertArrayEquals(expected, manager.searchBy("iPhone"));
+    }
+
+    @Test
+    public void shouldSearchByNoProducts() {
+        Product[] expected = {};
+
+        Assertions.assertArrayEquals(expected, manager.searchBy("OPPA"));
     }
 
 }
